@@ -22,4 +22,31 @@ public class Array {
     public boolean isEmpty(){//返回数组是否为空
         return size ==0;
     }
+
+    public void addLast(int e){//向所有元素后添加一个新元素
+//        if (size == data.length) {
+//            throw new IllegalArgumentException("AddLast is failed,Array is full");
+//        }
+//        data[size] = e;
+//        size++;
+        add(size,e);
+    }
+    public void addFirst(int e){//在所有元素前添加一个新元素
+        add(0,e);
+    }
+    // 在第index个位置插入一个新元素e
+    public void add(int index,int e){
+        if (size == data.length) {
+            throw new IllegalArgumentException("AddLast is failed,Array is full");
+        }
+        if (index<0 || index > size){
+            throw new IllegalArgumentException("Add failed.Require index>=0 and index<= size.");
+        }
+        for (int i = size - 1; i>=index;i--){
+            data[i+1] = data[i];
+        }
+        data[index] = e;
+        size++;
+
+    }
 }
