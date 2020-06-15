@@ -94,7 +94,7 @@ public class Array<E> {
         size --;
         data[size] = null;//JAVA的自动回收机制会回收它  loitering objects != memory leak
 
-        if (size==data.length/2){
+        if (size==data.length/4 && data.length/2 !=0){//lazy策略，解决复杂度震荡问题
             resize(data.length/2);
         }
         return ret;
