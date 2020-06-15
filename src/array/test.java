@@ -2,7 +2,7 @@ package array;
 
 public class test {
     public static void main(String[] args) {
-        Array<Integer> arr = new Array<>(20);//因为使用了泛型，所以需要明确数组中包含的对象类；因为不能使用八种基本数据类型，所以需要使用整型包装类
+        Array<Integer> arr = new Array<>();//因为使用了泛型，所以需要明确数组中包含的对象类；因为不能使用八种基本数据类型，所以需要使用整型包装类
         //包装类与对应的基本数据类型能自动进行转换
         for (int i =0;i<10;i++){
             arr.addLast(i);
