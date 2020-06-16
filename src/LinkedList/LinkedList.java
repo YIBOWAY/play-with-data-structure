@@ -22,7 +22,7 @@ public class LinkedList<E> {
             return e.toString();
         }
     }
-    private Node dummyHead;
+    private Node dummyHead;//虚拟头结点，实际并不存在，主要为了顺利完成逻辑
     private int size;
 
     public LinkedList(){
@@ -107,6 +107,30 @@ public class LinkedList<E> {
             }cur = cur.next;
         }
         return false;
+    }
+
+    //从链表中删除index位置的元素，返回删除元素的值
+    public E remove(int index){
+        if (index<0||index>=size){
+            throw new IllegalArgumentException("Get failed, illegal index.");
+        }
+        Node prev = dummyHead;
+        for (int i=0;i<index;i++){
+            prev = prev.next;
+        }
+        Node reNode = prev.next;
+        prev.next = reNode.next;
+        reNode.next = null;
+        size--;
+        return reNode.e;
+    }
+    //从链表中删除第一个元素
+    public E removeFirst(){
+        return remove(0);
+    }
+    //从链表中删除最后一个元素
+    public E removeLast(){
+        return remove(size-1);
     }
     @Override
     public String toString(){
