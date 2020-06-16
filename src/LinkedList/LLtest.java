@@ -1,6 +1,6 @@
 package LinkedList;
 
-public class test {
+public class LLtest {
     public static void main(String[] args) {
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
         for (int i = 0;i<5;i++){
