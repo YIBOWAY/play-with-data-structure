@@ -22,11 +22,11 @@ public class LinkedList<E> {
             return e.toString();
         }
     }
-    private Node head;
+    private Node dummyHead;
     private int size;
 
     public LinkedList(){
-        head = null;
+        dummyHead = new Node(null,null);
         size = 0;
     }
     //获取链表中的元素个数
@@ -37,24 +37,15 @@ public class LinkedList<E> {
     public boolean isEmpty(){
         return size == 0;
     }
-    //在链表头添加新的元素e
-    public void addFirst(E e){
-//        Node node = new Node(e);
-//        node.next = head;
-//        head = node;
-        head = new Node(e,head);
-        size++;
-    }
+
     //在链表的index（0-based）位置添加新的元素e
     public void add(int index,E e){
         if (index<0 || index> size){
             throw new IllegalArgumentException("Add failed,illegal index.");
         }
-        if (index==0){
-            addFirst(e);
-        }else {
-            Node prev = head;
-            for (int i=0;i<index-1;i++){
+
+            Node prev = dummyHead;
+            for (int i=0;i<index;i++){
                 prev = prev.next;
             }
 //            Node node = new Node(e);
@@ -62,10 +53,72 @@ public class LinkedList<E> {
 //            prev.next=node;
             prev.next = new Node(e,prev.next);
             size++;
-        }
+
+    }
+    //在链表头添加新的元素e
+    public void addFirst(E e){
+//        Node node = new Node(e);
+//        node.next = head;
+//        head = node;
+//        head = new Node(e,head);
+//        size++;
+        add(0,e);
     }
     //在链表末尾添加新的元素
     public void addLast(E e){
         add(size,e);
+    }
+    //获得链表的第index个位置的元素
+    public E get(int index){
+        if (index<0||index>=size){
+            throw new IllegalArgumentException("Get failed, illegal index.");
+        }
+        Node cur = dummyHead.next;
+        for (int i=0;i<index;i++){
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+    //获得链表的第一个元素
+    public E getFirst(){
+        return get(0);
+    }
+    //获得链表的最后一个元素
+    public E getLast(){
+        return get(size-1);
+    }
+    //修改链表的第index个位置的元素为e
+    public void set(int index,E e){
+        if (index<0||index>=size){
+            throw new IllegalArgumentException("Get failed, illegal index.");
+        }
+        Node cur = dummyHead.next;
+        for (int i=0;i<index;i++){
+            cur = cur.next;
+        }
+        cur.e = e;
+    }
+    //查找链表中是否有元素e
+    public boolean contains(E e){
+        Node cur = dummyHead.next;
+        while (cur!=null){
+            if (cur.e.equals(e)){
+                return true;
+            }cur = cur.next;
+        }
+        return false;
+    }
+    @Override
+    public String toString(){
+        StringBuilder res = new StringBuilder();
+        Node cur = dummyHead.next;
+//        while (cur != null){
+//            res.append(cur+"->");
+//            cur = cur.next;
+//        }
+        for (;cur != null;cur = cur.next){
+            res.append(cur+"->");
+        }res.append("Null");
+        return res.toString();
     }
 }
