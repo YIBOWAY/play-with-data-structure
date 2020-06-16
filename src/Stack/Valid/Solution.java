@@ -1,6 +1,6 @@
-package Valid;
+package Stack.Valid;
 import java.util.Stack;
-//Valid Parentheses:括号匹配
+//Stack.Valid Parentheses:括号匹配
 public class Solution {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
